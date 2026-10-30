@@ -2,100 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ShopNex - Online Shopping</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#f5f7fb;color:#172033}
-header{background:#fff;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #ddd}
+body{margin:0;font-family:Arial;background:#f4f6fb;color:#172033}
+header{background:white;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #ddd}
 .logo{font-size:27px;font-weight:bold;color:#1769e0}
-.cart{background:#1769e0;color:white;padding:12px 18px;border:0;border-radius:8px}
-.hero{background:linear-gradient(120deg,#0754c7,#3995ff);color:white;padding:55px 7%;text-align:center}
-.hero h1{font-size:36px}
-.hero p{font-size:17px}
-.search{width:90%;max-width:500px;padding:15px;border:0;border-radius:9px;margin-top:15px}
-h2{text-align:center;margin:30px}
-.categories{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.categories button{padding:12px 20px;border:0;border-radius:20px;background:white;color:#1769e0}
-.products{padding:15px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:16px}
-.card{background:white;padding:12px;border-radius:12px;box-shadow:0 2px 9px #ddd}
-.pic{height:125px;background:#edf3ff;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:55px}
+button{cursor:pointer;border:0;border-radius:8px;padding:12px;background:#1769e0;color:white}
+input,select{padding:13px;border:1px solid #ddd;border-radius:8px;width:100%;margin:7px 0}
+.hero{background:linear-gradient(120deg,#0754c7,#3995ff);color:white;text-align:center;padding:55px 15px}
+.hero h1{font-size:38px}
+.search{max-width:500px;background:white}
+h2{text-align:center;margin:30px 10px}
+.categories{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.categories button{background:white;color:#1769e0}
+.products{padding:15px 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:17px}
+.card{background:white;padding:12px;border-radius:14px;box-shadow:0 3px 12px #ddd}
+.card img{width:100%;height:155px;object-fit:cover;border-radius:10px}
 .card h3{font-size:16px}
-.price{font-weight:bold;color:#1769e0}
-.card button{width:100%;padding:11px;background:#1769e0;color:white;border:0;border-radius:7px}
-footer{text-align:center;padding:25px;background:#172033;color:white;margin-top:35px}
-</style>
-</head>
-<body>
-
-<header>
-<div class="logo">🛍️ ShopNex</div>
-<button class="cart" onclick="checkout()">🛒 Cart (<span id="count">0</span>)</button>
-</header>
-
-<section class="hero">
-<h1>Welcome to ShopNex</h1>
-<p>Everything You Need, All in One Place!</p>
-<input class="search" id="search" placeholder="Search products..." oninput="showProducts()">
-</section>
-
-<h2>Shop By Category</h2>
-<div class="categories">
-<button onclick="filter('All')">All</button>
-<button onclick="filter('Fashion')">Fashion</button>
-<button onclick="filter('Electronics')">Electronics</button>
-<button onclick="filter('Home')">Home</button>
-<button onclick="filter('Beauty')">Beauty</button>
-</div>
-
-<h2>Featured Products</h2>
-<div class="products" id="products"></div>
-
-<footer>
-<h2>ShopNex</h2>
-<p>Your Favourite Online Shopping Store</p>
-<p>© 2026 ShopNex. All Rights Reserved.</p>
-</footer>
-
-<script>
-let items=[
-{name:"Stylish T-Shirt",price:299,cat:"Fashion",icon:"👕"},
-{name:"Smart Watch",price:799,cat:"Electronics",icon:"⌚"},
-{name:"Shoes",price:599,cat:"Fashion",icon:"👟"},
-{name:"Headphones",price:499,cat:"Electronics",icon:"🎧"},
-{name:"Home Lamp",price:399,cat:"Home",icon:"💡"},
-{name:"Beauty Kit",price:349,cat:"Beauty",icon:"💄"},
-{name:"Backpack",price:699,cat:"Fashion",icon:"🎒"},
-{name:"Mobile Phone",price:8999,cat:"Electronics",icon:"📱"}
-];
-let cart=[];
-let category="All";
-
-function showProducts(){
-let q=document.getElementById("search").value.toLowerCase();
-let list=items.filter(p=>
-(category==="All"||p.cat===category)&&p.name.toLowerCase().includes(q)
-);
-document.getElementById("products").innerHTML=list.map((p,i)=>`
-<div class="card">
-<div class="pic">${p.icon}</div>
-<h3>${p.name}</h3>
-<p class="price">₹${p.price}</p>
-<button onclick="add(${items.indexOf(p)})">Add to Cart</button>
-</div>`).join("");
-}
-function filter(c){category=c;showProducts();}
-function add(i){
-cart.push(items[i]);
-document.getElementById("count").innerText=cart.length;
-alert("Product added to cart!");
-}
-function checkout(){
-if(cart.length===0){alert("Your cart is empty!");return;}
-let total=cart.reduce((s,p)=>s+p.price,0);
-alert("Items: "+cart.length+"\nTotal: ₹"+total+"\n\nCheckout and payment will be added in the next step.");
-}
-showProducts();
-</script>
-</body>
-  </html>
+.price{font-size:20px;font-weight:bold;color:#1769e0}
+.card button{width:100%}
+.panel{background:white;margin:20px auto;padding:20px;border-radius:12px
